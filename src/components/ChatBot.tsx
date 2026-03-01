@@ -2,16 +2,26 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Send, User, Bot, Loader2 } from 'lucide-react';
+import { Send, User, Bot, Loader2 } from 'lucide-react';
+
+import { SeasonData } from '@/lib/seasons';
 
 interface Message {
     role: 'user' | 'assistant';
     content: string;
 }
 
-export default function ChatBot({ weather }: { weather: string }) {
+export default function ChatBot({ weather, season }: { weather: string, season: SeasonData }) {
+    const initialMessage = `こんにちは、高村です。
+今日は「${season.name}」（${season.period}）ですね。${season.meaning}と感じられる時期です。
+こういった季節の移り変わりには、やはり${season.flower}がよく似合います。
+
+【 和弘からの質問 】
+さて、今日はどんなお花をお探しかな？
+誰かに贈りたいのか、今の自分を変えたいのか、なんでも話してみてください。回り道の話でも歓迎ですよ。`;
+
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'assistant', content: 'こんにちは、高村です。今日はどんなお花をお探しかな？誰かに贈りたいのか、今の自分を変えたいのか、なんでも話してみてください。回り道の話でも歓迎ですよ。' }
+        { role: 'assistant', content: initialMessage }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);

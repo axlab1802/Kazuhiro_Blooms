@@ -13,6 +13,7 @@ export default function Home() {
 
   // Initialize with current season
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedSeason(getCurrentSeason());
   }, []);
 
@@ -91,7 +92,7 @@ export default function Home() {
               </div>
 
               <div className="flex-1 min-h-[600px] flex flex-col">
-                <ChatBot weather={weather} />
+                <ChatBot weather={weather} season={selectedSeason} />
               </div>
             </div>
           </section>
@@ -108,7 +109,7 @@ export default function Home() {
               <div className="flex-1 min-h-0">
                 <SeasonalNav
                   currentId={selectedSeason.id}
-                  onSelect={(season) => setSelectedSeason(season)}
+                  onSelect={(season: SeasonData) => setSelectedSeason(season)}
                 />
               </div>
             </div>

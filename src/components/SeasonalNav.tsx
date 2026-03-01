@@ -1,7 +1,6 @@
 'use client';
 
 import { SEASONS, SeasonData } from '@/lib/seasons';
-import { motion } from 'framer-motion';
 
 interface SeasonalNavProps {
     currentId: number;
@@ -16,8 +15,8 @@ export default function SeasonalNav({ currentId, onSelect }: SeasonalNavProps) {
                     key={s.id}
                     onClick={() => onSelect?.(s)}
                     className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border text-left group ${s.id === currentId
-                            ? 'bg-[#faedcd]/40 border-[#d4a373]/30 shadow-sm'
-                            : 'hover:bg-white border-transparent text-gray-500'
+                        ? 'bg-[#faedcd]/40 border-[#d4a373]/30 shadow-sm'
+                        : 'hover:bg-white border-transparent text-gray-500'
                         }`}
                 >
                     <div className="flex items-center gap-4">

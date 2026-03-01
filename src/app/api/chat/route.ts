@@ -49,6 +49,7 @@ export async function POST(req: Request) {
                 role: 'user',
                 parts: [{ text: `${SYSTEM_PROMPT}\n\n現在の状況:\n- 天気: ${weather || '晴れ'}\n\nこれまでの会話履歴を考慮して返答してください。` }]
             },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ...messages.map((m: any) => ({
                 role: m.role === 'user' ? 'user' : 'model',
                 parts: [{ text: m.content }]
@@ -60,6 +61,7 @@ export async function POST(req: Request) {
             // thinkingLevel: ThinkingLevel.HIGH, // if needed
         };
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const response = await (ai as any).models.generateContent({
             model,
             contents,
@@ -68,6 +70,7 @@ export async function POST(req: Request) {
 
         const text = response.text;
         return NextResponse.json({ content: text });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.error('Chat API Error:', error);
         return NextResponse.json({ error: error.message }, { status: 500 });

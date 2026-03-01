@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import blobs from './season_blobs.json';
 
 export interface SeasonData {

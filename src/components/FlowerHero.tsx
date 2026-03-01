@@ -45,7 +45,7 @@ export default function FlowerHero({ season }: { season: SeasonData }) {
                         className="object-contain p-4 md:p-12 hover:scale-105 transition-transform duration-700 pointer-events-auto"
                         onError={(e) => {
                             // Fallback if image not generated yet
-                            (e.target as any).src = 'https://images.unsplash.com/photo-1490750967868-886a502c3821?q=80&w=2070&auto=format&fit=crop';
+                            (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1490750967868-886a502c3821?q=80&w=2070&auto=format&fit=crop';
                         }}
                     />
                 </motion.div>

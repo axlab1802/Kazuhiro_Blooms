@@ -104,9 +104,11 @@ async function main() {
         const success = await generateImage(i, flowers[i].season, flowers[i].flower);
 
         if (success) {
-            await new Promise(r => setTimeout(r, 2000));
-        } else {
+            console.log(`- Success. Waiting 5s...`);
             await new Promise(r => setTimeout(r, 5000));
+        } else {
+            console.log(`- Failed. Waiting 10s...`);
+            await new Promise(r => setTimeout(r, 10000));
         }
     }
     console.log("\nAll Done!");

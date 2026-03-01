@@ -105,10 +105,10 @@ export function getCurrentSeason(date: Date = new Date()): SeasonData {
 }
 
 export function getSeasonImageAssetPath(season: SeasonData): string {
-    // Try mapping first, then local fallback
+    // Try mapping first, then external fallback
     const url = (blobs as Record<string, string>)[season.id.toString()];
     if (url) return url;
 
-    const fileName = `${String(season.id).padStart(2, '0')}_${season.name}.png`;
-    return `/assets/flowers/${fileName}`;
+    // Fallback to Unsplash to prevent Next.js static build errors for missing local paths
+    return `https://images.unsplash.com/photo-1490750967868-886a502c3821?q=80&w=1000&auto=format&fit=crop`;
 }

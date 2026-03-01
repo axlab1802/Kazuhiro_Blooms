@@ -60,13 +60,13 @@ export async function POST(req: Request) {
             // thinkingLevel: ThinkingLevel.HIGH, // if needed
         };
 
-        const result = await (ai as any).models.generateContent({
+        const response = await (ai as any).models.generateContent({
             model,
             contents,
             config
         });
 
-        const text = result.response.text();
+        const text = response.text;
         return NextResponse.json({ content: text });
     } catch (error: any) {
         console.error('Chat API Error:', error);
